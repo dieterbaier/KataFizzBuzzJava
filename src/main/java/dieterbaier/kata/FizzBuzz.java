@@ -16,11 +16,15 @@ public class FizzBuzz {
       return "Buzz";
     if (isFizzCandidate(number))
       return "Fizz";
-    return Integer.toString(number);
+    return asString(number);
   }
 
   private boolean isBuzzCandidate(final int number) {
-    return isNumberDevisibleByDigit(number, 5) || Integer.toString(number).contains("5");
+    return isNumberDevisibleByDigit(number, 5) || asString(number).contains("5");
+  }
+
+  private String asString(final int number) {
+    return Integer.toString(number);
   }
 
   private boolean isFizzBuzzCandidate(final int number) {
@@ -28,7 +32,7 @@ public class FizzBuzz {
   }
 
   private boolean isFizzCandidate(final int number) {
-    return isNumberDevisibleByDigit(number, 3) || Integer.toString(number).contains("3");
+    return isNumberDevisibleByDigit(number, 3) || asString(number).contains("3");
   }
 
   private boolean isNumberDevisibleByDigit(final int number, final int digit) {
