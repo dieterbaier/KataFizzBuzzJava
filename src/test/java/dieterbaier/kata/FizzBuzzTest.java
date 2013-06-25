@@ -9,22 +9,27 @@ import org.testng.annotations.Test;
 public class FizzBuzzTest {
 
   @Test
-  public void countBuzz() {
-    assertThat(FizzBuzzTestHelper.count(1, 100, "Buzz"), is(22));
+  public void countPrintedBuzz() {
+    assertThat(FizzBuzzTestHelper.countWord(1, 100, "Buzz"), is(22));
   }
 
   @Test
-  public void countFizz() {
-    assertThat(FizzBuzzTestHelper.count(1, 100, "Fizz"), is(34));
+  public void countPrintedFizz() {
+    assertThat(FizzBuzzTestHelper.countWord(1, 100, "Fizz"), is(34));
   }
 
   @Test
-  public void countFizzBuzz() {
-    assertThat(FizzBuzzTestHelper.count(1, 100, "FizzBuzz"), is(6));
+  public void countPrintedFizzBuzz() {
+    assertThat(FizzBuzzTestHelper.countWord(1, 100, "FizzBuzz"), is(6));
   }
 
   @Test
-  public void countLines() {
-    assertThat(FizzBuzzTestHelper.count(1, 100, FizzBuzzTestHelper.LF), is(100));
+  public void countPrintedLines() {
+    assertThat(FizzBuzzTestHelper.countWord(1, 100, System.getProperty("line.separator")), is(100));
+  }
+
+  @Test
+  public void countPrintedNumbers() {
+    assertThat(FizzBuzzTestHelper.countWord(1, 100, "\\d+"), is(38));
   }
 }

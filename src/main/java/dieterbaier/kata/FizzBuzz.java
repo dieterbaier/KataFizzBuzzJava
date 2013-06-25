@@ -4,9 +4,13 @@ import java.io.PrintStream;
 
 public class FizzBuzz {
 
-  public void print(final int start, final int end, final PrintStream out) {
+  public void printNumbers(final int start, final int end, final PrintStream out) {
     for (int i = start; i <= end; i++)
       out.println(convert(i));
+  }
+
+  private String asString(final int number) {
+    return Integer.toString(number);
   }
 
   private String convert(final int number) {
@@ -20,22 +24,18 @@ public class FizzBuzz {
   }
 
   private boolean isBuzzCandidate(final int number) {
-    return isNumberDevisibleByDigit(number, 5) || asString(number).contains("5");
-  }
-
-  private String asString(final int number) {
-    return Integer.toString(number);
+    return isNumberDevisableByDigit(number, 5) || asString(number).contains("5");
   }
 
   private boolean isFizzBuzzCandidate(final int number) {
-    return isNumberDevisibleByDigit(number, 5) && isNumberDevisibleByDigit(number, 3);
+    return isNumberDevisableByDigit(number, 3) && isNumberDevisableByDigit(number, 5);
   }
 
   private boolean isFizzCandidate(final int number) {
-    return isNumberDevisibleByDigit(number, 3) || asString(number).contains("3");
+    return isNumberDevisableByDigit(number, 3) || asString(number).contains("3");
   }
 
-  private boolean isNumberDevisibleByDigit(final int number, final int digit) {
+  private boolean isNumberDevisableByDigit(final int number, final int digit) {
     return number % digit == 0;
   }
 
