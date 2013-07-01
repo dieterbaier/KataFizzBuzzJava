@@ -2,44 +2,58 @@ package dieterbaier.kata;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import dieterbaier.kata.fizzbuzz.FizzBuzzTestHelper;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class FizzBuzzTest {
 
-  @Test
-  public void checkSummOfAllConvertions() {
-    final int start = 1;
-    final int end = 100;
-    assertThat(
-        FizzBuzzTestHelper.countFizz(start, end) + FizzBuzzTestHelper.countBuzz(start, end)
-            + FizzBuzzTestHelper.countFizzBuzz(start, end) + FizzBuzzTestHelper.countNumbers(start, end),
-        is(100));
+  private FizzBuzz fizzBuzz;
+
+  @BeforeMethod
+  public void beforeMethod() {
+    fizzBuzz = new FizzBuzz();
   }
 
   @Test
-  public void countPrintedBuzz() {
-    assertThat(FizzBuzzTestHelper.countBuzz(1, 100), is(22));
+  public void countBuzz() {
+    assertThat(count(1, 100, "\\bBuzz\\b"), is(22));
   }
 
   @Test
-  public void countPrintedFizz() {
-    assertThat(FizzBuzzTestHelper.countFizz(1, 100), is(34));
+  public void countFizz() {
+    assertThat(count(1, 100, "\\bFizz\\b"), is(34));
   }
 
   @Test
-  public void countPrintedFizzBuzz() {
-    assertThat(FizzBuzzTestHelper.countFizzBuzz(1, 100), is(6));
+  public void countFizzBuzz() {
+    assertThat(count(1, 100, "\\bFizzBuzz\\b"), is(6));
   }
 
   @Test
-  public void countPrintedLines() {
-    assertThat(FizzBuzzTestHelper.countLines(1, 100), is(100));
+  public void countLines() {
+    assertThat(count(1, 100, System.getProperty("line.separator")), is(100));
   }
 
   @Test
-  public void countPrintedNumbers() {
-    assertThat(FizzBuzzTestHelper.countNumbers(1, 100), is(38));
+  public void countNumbers() {
+    assertThat(count(1, 100, "\\d+"), is(38));
   }
+
+  private int count(final int start, final int end, final String pattern) {
+    final OutputStream os = new ByteArrayOutputStream();
+    fizzBuzz.print(start, end, new PrintStream(os));
+    final Matcher parser = Pattern.compile(pattern).matcher(os.toString());
+    int counter = 0;
+    while (parser.find())
+      counter++;
+    return counter;
+  }
+
 }
