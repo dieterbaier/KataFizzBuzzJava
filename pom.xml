@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>dieterbaier.kata</groupId>
-	<artifactId>FizzBuzz</artifactId>
+	<artifactId>KataFizzBuzzJava</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>FizzBuzz</name>
+	<name>KataFizzBuzzJava</name>
 	<description>http://www.codingdojo.org/cgi-bin/wiki.pl?KataFizzBuzz</description>
 	<dependencies>
 		<dependency>
